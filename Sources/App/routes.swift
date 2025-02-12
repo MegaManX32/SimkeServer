@@ -17,4 +17,9 @@ func routes(_ app: Application) throws {
             throw UserError.noUserWithId
         }
     }
+    
+    app.post("domain") { req async throws -> DomainResponse in
+        let request = try req.content.decode(DomainRequest.self)
+        return DomainResponse(name: request.name)
+    }
 }
